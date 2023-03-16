@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="반복뮨 연습.cpp">
+    <ClCompile Include="CPP기본.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
