@@ -18,6 +18,16 @@ public:
     //0:남자 1:여자
     int gender; 
     string department;
+
+    //class는 멤버변수를 가질 수 있다--멤버함수
+    void print(void) 
+    {
+        cout << "이름: " << name << endl;
+        cout << "학번: " << student_num << endl;
+        cout << "나이: " << age << endl;
+        cout << "성별(0)남자,(1)여자: " << gender << endl;
+        cout << "학번: " << department << endl;
+    }
 };
 
 int main() {
@@ -30,10 +40,8 @@ int main() {
     stu1.gender = 1;
     stu1.department = "소프트웨어과";
 
-    cout << "이름: " << stu1.name << endl;
-    cout << "학번: " << stu1.student_num << endl;
-    cout << "나이: " << stu1.age << endl;
-    cout << "성별(0)남자,(1)여자: " << stu1.gender<< endl;
-    cout << "학번: " << stu1.department << endl;
+    stu1.print();
+
+    
     return 0;
 }
