@@ -5,7 +5,9 @@ using namespace std;
 
 //여러 data들을 하나의 의미있는 구조체로 묶어서 관리
 //구조체,클래스는 일반적으로 단어의 첫 글자를 대문자로 한다
-struct Student {
+//class는 default가 private(struct는 default가 public)--시험
+class Student {
+public:
     string name;
     //시험X: 학번을 성능때문에 뮨자열로 하지 않음
     //일반적으로 문자열은 정수데이터보다 많은 메모리 공간을 요구하며
