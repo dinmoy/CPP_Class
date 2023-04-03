@@ -33,7 +33,7 @@ public:
 int main() {
     
     //(struct drink)자료형(C++에서는 drink만 써도  됨)/struct 자체가 자료형
-    struct Student stu1;
+    Student stu1;
     stu1.name = "임효진";
     stu1.student_num = 2117;
     stu1.age = 18;
