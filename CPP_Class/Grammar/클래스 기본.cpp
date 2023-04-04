@@ -12,20 +12,20 @@ public:
     //생성자(constructor) : 객체가 생성될 때 호출되는 함수
     //생성자를 정의하지 않으면 자동(default)으로 매개변수가 없는 생성자가 정의된다
     //Student(){ }
-    Student() {
-        name = "임효진";
-        student_num = 2117;
-        age = 18;
-        gender = 1;
-        department = "소프트웨어과";
+    //Student() {
+    //    name = "임효진";
+    //    student_num = 2117;
+    //    age = 18;
+    //    gender = 1;
+    //    department = "소프트웨어과";
 
-    }
-    Student(string name, int student_num, int age, int gender, string department) {
-        this->name = name;
-        this->student_num = student_num;
-        this->age = age;
-        this->gender = gender;
-        this->department = department;
+    //}
+    Student(string _name, int _student_num, int _age, int _gender, string _department) {
+        name = _name;
+        student_num = _student_num;
+        age = _age;
+        gender = _gender;
+        department = _department;
     }
     //class는 멤버변수를 가질 수 있다--멤버함수
     void print(void)
@@ -52,10 +52,8 @@ private:
 int main() {
     
     //(struct drink)자료형(C++에서는 drink만 써도  됨)/struct 자체가 자료형
-    Student stu1=Student();
+    Student stu1 = Student("임효진", 2117, 18, 1, "뉴미디어 소프트웨어과");
     stu1.print();
-    Student stu2 = Student("이지수", 2112, 18, 1, "뉴미디어 소프트웨어과");
-    stu2.print();
 
     return 0;
 }
