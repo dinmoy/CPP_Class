@@ -20,6 +20,13 @@ public:
         department = "소프트웨어과";
 
     }
+    Student(string name, int student_num, int age, int gender, string department) {
+        this->name = name;
+        this->student_num = student_num;
+        this->age = age;
+        this->gender = gender;
+        this->department = department;
+    }
     //class는 멤버변수를 가질 수 있다--멤버함수
     void print(void)
     {
@@ -47,6 +54,8 @@ int main() {
     //(struct drink)자료형(C++에서는 drink만 써도  됨)/struct 자체가 자료형
     Student stu1=Student();
     stu1.print();
+    Student stu2 = Student("이지수", 2112, 18, 1, "뉴미디어 소프트웨어과");
+    stu2.print();
 
     return 0;
 }
