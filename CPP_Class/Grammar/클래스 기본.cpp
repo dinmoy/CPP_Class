@@ -19,6 +19,10 @@ public:
     int gender; 
     string department;
 
+    //생성자(constructor) : 객체가 생성될 때 호출되는 함수
+    //생성자를 정의하지 않으면 자동(default)으로 매개변수가 없는 생성자가 정의된다
+    //Student(){ }
+    
     //class는 멤버변수를 가질 수 있다--멤버함수
     void print(void) 
     {
@@ -42,6 +46,5 @@ int main() {
 
     stu1.print();
 
-    
     return 0;
 }
