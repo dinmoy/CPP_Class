@@ -25,12 +25,14 @@ public:
     //    department = "소프트웨어과";
 
     //}
-    Student(string _name, int _student_num, int _age, int _gender, string _department) {
-        name = _name;
-        student_num = _student_num;
-        age = _age;
-        gender = _gender;
-        department = _department;
+    Student(string name, int student_num, int age, int gender, string department) {
+        //this : 객체 자기자신을 가리키는 포인터
+        //매개변수명과 멤버변수명이 같아도 구별 가능
+        this->name = name;
+        this->student_num = student_num;
+        this->age = age;
+        this->gender = gender;
+        this->department = department;
     }
     //class는 멤버변수를 가질 수 있다--멤버함수
     void print(void)
@@ -58,18 +60,9 @@ int main() {
     
     //(struct drink)자료형(C++에서는 drink만 써도  됨)/struct 자체가 자료형
     Student stu1 = Student("임효진", 2117, 18, 1, "뉴미디어 소프트웨어과");
-    //stu1.print();
+    stu1.print();
 
-    struct Actor KYLee;
-    KYLee.name = "이경영";
-    KYLee.dialog = "진행시켜";
-
-    struct Actor* ptr = &KYLee;
-
-    //ptr->name, (*ptr)name 같은 결과
-    // ->: 축약
-    cout << "이름: " << ptr->name << endl;
-    cout << "대사: " << (*ptr).dialog << endl;
+    
 
     return 0;
 }
