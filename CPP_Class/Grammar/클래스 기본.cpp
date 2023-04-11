@@ -48,6 +48,11 @@ public:
         cout << "성별(0)남자,(1)여자: " << gender << endl;
         cout << "학번: " << department << endl;
     }
+    void set_name(string _name) { name = _name; }
+    void set_hakbun(int _student_num) { student_num = _student_num; }
+    void set_age(int _age) { age = _age; }
+    void set_gender(int _gender) { gender = _gender; }
+    void set_department(string _department) { department = _department; }
 private:
     string name;
     //시험X: 학번을 성능때문에 뮨자열로 하지 않음
@@ -67,16 +72,28 @@ int main() {
     //Student stu1 = Student("임효진", 2117, 18, 1, "뉴미디어 소프트웨어과");
     //stu1.print();
 
-    Student stu3[2];
+    /*Student stu3[2];
     for (int i = 0; i < 2; i++) {
         stu3[i].print();
-    }
+    }*/
 
     //동적할당 : 메모리의 크기가 실행할 때(runtime)  결정됨. heap영역
     // C++의 동적할당은 반드시 delete로 해제해야 메모리 누수를 막을 수 있음
     //Student* stu2 = new Student("서강준",3100,31,0,"방송연예과");
     //stu2->print();    // 단일객체는 멤버를 -> 로 접근
     Student* stu4 = new Student[2];
+    stu4[0].set_age(18);
+    stu4[0].set_name("지수");
+    stu4[0].set_hakbun(2112);
+    stu4[0].set_gender(1);
+    stu4[0].set_department("뉴미디어 소프트웨어과");
+
+    stu4[1].set_age(18);
+    stu4[1].set_name("혁수");
+    stu4[1].set_hakbun(2118);
+    stu4[1].set_gender(0);
+    stu4[1].set_department("뉴미디어 소프트웨어과");
+
     for (int i = 0; i < 2; i++) 
         stu4[i].print(); //배열의 요소에 해당하는 객체는 멤버를 .으로 접근
     delete[] stu4;
