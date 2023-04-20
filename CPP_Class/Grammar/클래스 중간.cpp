@@ -23,8 +23,18 @@ private:
 };
 int main(void)
 {
-	MString str =MString("yakitori tabetai");
-	cout << str.c_str() << endl;
+
+	//new로 동적할당한 공간은 반드시 delete로 해제시켜야함
+	//만약 그렇지 않으면 메모리가 누수됨
+	MString* str = new MString("강아지 뇽뇽");
+	cout << str->c_str() << endl;
+	//str에 대한 delete는 진행 되었으나, str->c_str에 대한 delete가 진행되지 않음
+	//TODO: 이를 delete해주는 소멸자(destructor)구현하기
+	delete str;
+
+
+
+
 
 	return 0;
 }
