@@ -4,6 +4,7 @@ using namespace std;
 
 class MString {
 public:
+	//일반적인 생성자
 	MString(const char* str) 
 	{
 		unsigned int str_length = strlen(str);
@@ -11,6 +12,12 @@ public:
 		c_str_ = new char[str_length+1];  //'/0' (널문자) 공간 +1
 		strcpy(c_str_, str);
 		cout << "MString 생성자 호출 시작" << endl;
+	}
+
+	//복사생성자( 별도로 정의하지 않으면 아래와 같이 컴파일러가 아래와 같은 복사생성자를 만들어냄)
+	MString(const MString& rhs) 
+		: size_(rhs.size_), c_str_(rhs.c_str_)
+	{
 	}
 	//소멸자(destructor)
 	~MString() 
@@ -31,8 +38,11 @@ private:
 };
 int main(void)
 {
+	//일반적인 생성자 호출
+	MString str1 = MString("Aitai");
 
-	MString str = MString("Aitai");
-	cout<<str.c_str() << endl;
+	//복사생성자 호출
+	MString str2 = str1;
+
 	return 0;
 }
