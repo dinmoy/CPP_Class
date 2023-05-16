@@ -13,6 +13,12 @@ public:
 		strcpy(str_, str);   //str의 내용을 str_에 복사
 		cout << "일반생성자 호출" << endl;
 	}
+	//복사생성자(얕은 복사로 인하여 문제점이 발생)
+	Munja(const Munja& m): str_(m.str_)
+	{
+		cout << "복사생성자 호출" << endl;
+	}
+
 	//소멸자
 	~Munja()
 	{
@@ -24,5 +30,6 @@ private:
 };
 
 int main(void) {
-	Munja m1 = Munja("abc");
+	Munja m1 = Munja("abc");   //일반 생성자 호출
+	Munja m2 = m1;            // 복사 생성자 호출
 }
