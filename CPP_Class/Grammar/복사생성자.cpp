@@ -13,7 +13,12 @@ public:
 		strcpy(str_, str);   //str의 내용을 str_에 복사
 		cout << "일반생성자 호출" << endl;
 	}
-
+	//소멸자
+	~Munja()
+	{
+		delete[] str_;
+		cout << "소멸자 호출" << endl;
+	}
 private:
 	char* str_;
 };
