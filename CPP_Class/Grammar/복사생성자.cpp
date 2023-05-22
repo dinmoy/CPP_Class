@@ -65,7 +65,7 @@ int main(void)
 	Student stu1 = Student(1111, "JWP");
 	// (1111, "JWP")가 복사됨. 일반생성자 호출X
 	Student stu2 = stu1;
-
+	 
 	stu1.show();
 	stu2.show();
 
