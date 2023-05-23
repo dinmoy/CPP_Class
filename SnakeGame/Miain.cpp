@@ -1,4 +1,7 @@
 ﻿#include <SFML/Graphics.hpp>
+#include <stdlib.h> //srand(),rand()
+#include <time.h> //time()
+
 
 
 using namespace sf;
@@ -8,6 +11,8 @@ int main(void)
 	//1초에 60번의 작업이 이루어 지도록 frame 조절
 	//컴퓨터 사양이 달라도 똑같은 속도로 처리함
 	window.setFramerateLimit(60);
+	srand(time(NULL));
+
 	RectangleShape snake;
 
 	snake.setPosition(200,300);
@@ -15,7 +20,7 @@ int main(void)
 	snake.setFillColor(Color::Green);
 
 	RectangleShape apple;
-	apple.setPosition(300, 400);
+	apple.setPosition(rand() % 640 - 30, rand() % 480 - 30);
 	apple.setSize(Vector2f(30, 30));
 	apple.setFillColor(Color::Red);
 
@@ -45,7 +50,7 @@ int main(void)
 		//뱀이 사과를 먹으면
 		if (snake.getGlobalBounds().intersects(apple.getGlobalBounds()))
 		{
-			apple.setPosition(-500, -500);
+			apple.setPosition(rand() % 640 - 30, rand() % 480 - 30);
 		}
 
 		//render
