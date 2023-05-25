@@ -34,8 +34,8 @@ int main(void)
 	snake.setFillColor(Color::Green);
 
 	RectangleShape apple;
-	int apple_x;
-	int apple_y;
+	int apple_x = rand() % w;
+	int apple_y = rand() % h;
 	
 	apple.setSize(Vector2f(block, block));
 	apple.setFillColor(Color::Red);
@@ -80,7 +80,7 @@ int main(void)
 		}
 		snake.setPosition(snake_x * block, snake_y * block);
 		//뱀이 사과를 먹으면
-		if (snake.getGlobalBounds().intersects(apple.getGlobalBounds()))
+		if(snake_x==apple_x && snake_y==apple_y)
 		{
 			apple_x = rand() % w;
 			apple_y = rand() % h;
