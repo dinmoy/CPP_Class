@@ -2,7 +2,10 @@
 #include <stdlib.h> //srand(),rand()
 #include <time.h> //time()
 
-
+#define DIR_UP		0
+#define DIR_DOWN	1
+#define DIR_RIGHT	2
+#define DIR_LEFT	3
 
 using namespace sf;
 int main(void) 
@@ -19,10 +22,11 @@ int main(void)
 	
 	//1초에 60번의 작업이 이루어 지도록 frame 조절
 	//컴퓨터 사양이 달라도 똑같은 속도로 처리함
-	window.setFramerateLimit(30);
+	window.setFramerateLimit(5);
 	srand(time(NULL));
 
 	RectangleShape snake;
+	int snake_dir = DIR_DOWN;
 	int snake_x = 3;
 	int snake_y = 3;
 	snake.setPosition(snake_x*block,snake_y*block);
@@ -49,25 +53,32 @@ int main(void)
 		//input
 		//네 개의 방향키가 중복으로 input되면 안됨
 		if (Keyboard::isKeyPressed(Keyboard::Up)) {
-			snake_y--;
-			snake.move(0, -block);
+			snake_dir = DIR_UP;
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Down)) {
-			snake_y++;
-			snake.move(0, block);
+			snake_dir = DIR_DOWN;
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Right)) {
-			snake_x++;
-			snake.move(block, 0);
+			snake_dir = DIR_RIGHT;
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Left)) {
-			snake_x--;
-			snake.move(-block, 0);
+			snake_dir = DIR_LEFT;
 		}
 		
-
 		//update
-
+		if (snake_dir == DIR_UP) {
+			snake_y--;
+		}
+		else if (snake_dir == DIR_DOWN) {
+			snake_y++;
+		}
+		else if (snake_dir == DIR_RIGHT) {
+			snake_x++;
+		}
+		else if (snake_dir == DIR_LEFT) {
+			snake_x--;
+		}
+		snake.setPosition(snake_x * block, snake_y * block);
 		//뱀이 사과를 먹으면
 		if (snake.getGlobalBounds().intersects(apple.getGlobalBounds()))
 		{
