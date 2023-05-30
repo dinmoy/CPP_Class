@@ -82,7 +82,8 @@ int main(void)
 		}
 
 		// update
-
+		//경계범위를 넘어섰을 때
+		//뱀이 이동하는 코드
 		if (snake.dir_ == DIR_UP) {
 			snake.y_--;
 		}
@@ -95,9 +96,12 @@ int main(void)
 		else if (snake.dir_ == DIR_LEFT) {
 			snake.x_--;
 		}
+		if (snake.x_ < 0) snake.x_ = 0;
+		if (snake.x_ >= w) snake.x_ = w - 1;
+		if (snake.y_ < 0) snake.y_ = 0;
+		if (snake.y_ >= h) snake.y_ = h - 1;
+
 		snake.sprite_.setPosition(snake.x_ * block, snake.y_ * block);
-
-
 
 		// 뱀이 사과를 먹으면
 		if (snake.x_ == apple.x_ && snake.y_ == apple.y_)
@@ -106,6 +110,7 @@ int main(void)
 			apple.y_ = rand() % h;
 			apple.sprite_.setPosition(apple.x_ * block, apple.y_ * block);
 		}
+		
 
 		// render
 		window.clear();
