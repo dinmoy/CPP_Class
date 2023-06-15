@@ -27,7 +27,7 @@ public:
 			break;
 		}*/
 	}
-	~Animal() { cout << "Animal 소멸자()" << endl; }
+	virtual ~Animal() { cout << "Animal 소멸자()" << endl; }
 	//가상함수 : Java처럼 동적바인딩
 	virtual void  Roar(void) { cout << "Animal 짖다" << endl; }
 	void  Eat(void) { cout << "Animal 먹다" << endl; }
@@ -44,7 +44,7 @@ public:
 	{
 		cout << "Rabbit 생성자()" << endl;
 	}
-	~Rabbit() { cout << "Rabbit 소멸자()" << endl; }
+	virtual ~Rabbit() { cout << "Rabbit 소멸자()" << endl; }
 	//함수 override
 	//다형ㅅ성(polymorphism): : 시그니쳐(반환형,이름,매개변수가 모두 같은)가 같은 함수임에도 
 	//불구하고 다르게 실행되는 것
