@@ -57,11 +57,8 @@ private:
 	int ear_length_;
 };
 int main() {
-
-	Animal* animal = new Animal(COLOR_BLUE,30);
-	animal->Roar();		//동물 짖어
-	delete animal;
-	Rabbit* rabbit = new Rabbit(COLOR_RED, 3, 20);  //부모의 생성자도 호출
+	//소멸자에 virtual을 안하면 자식소멸자가 호출되지 않아서 메모리 누수현상 발생
+	Animal* animal = new Rabbit(COLOR_RED, 3, 20);  //부모의 생성자도 호출
 	animal->Roar(); // 깡총깡총
 	delete animal;
 }
