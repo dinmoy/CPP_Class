@@ -7,11 +7,11 @@ using namespace std;
 
 class Animal {
 public:
-	Animal(int color,int age): color_(color),age_(age)
+	Animal(int color, int age) : color_(color), age_(age)
 	{
 		cout << "Animal 생성자()" << endl;
-		cout << age_ << "살" << endl;
-		switch (color_)
+		//cout << age_ << "살" << endl;
+		/*switch (color_)
 		{
 		case COLOR_RED:
 			cout << "빨간색" << endl;
@@ -25,10 +25,10 @@ public:
 		default:
 			cout << "이상한 색" << endl;
 			break;
-		}
+		}*/
 	}
 	~Animal() { cout << "Animal 소멸자()" << endl; }
-	void  Bite(void) { cout << "Animal 물다" << endl; }
+	void  Roar(void) { cout << "Animal 짖다" << endl; }
 	void  Eat(void) { cout << "Animal 먹다" << endl; }
 	void Sleep(void) { cout << "Animal 자다" << endl; }
 
@@ -39,10 +39,9 @@ private:
 class Rabbit : public Animal {
 public:
 	//부모생성자(Animal(color,age))가 먼저 호출
-	Rabbit(int color,int age,int ear_length):Animal(color,age) ,ear_length_(ear_length)
-	{ 
-		cout << "Rabbit 생성자()" << endl; 
-		cout << "귀 길이" << ear_length_ << endl;
+	Rabbit(int color, int age, int ear_length) :Animal(color, age), ear_length_(ear_length)
+	{
+		cout << "Rabbit 생성자()" << endl;
 	}
 	~Rabbit() { cout << "Rabbit 소멸자()" << endl; }
 
@@ -50,7 +49,11 @@ private:
 	int ear_length_;
 };
 int main() {
-	Rabbit* rabbit = new Rabbit(COLOR_RED,3,20);  //부모의 생성자도 호출
-	rabbit->Bite(); //부모의 멤버함수 호출
-	delete rabbit;
+
+	Animal* animal = new Animal(COLOR_BLUE,30);
+	animal->Roar();		//동물 짖어
+	delete animal;
+	Rabbit* rabbit = new Rabbit(COLOR_RED, 3, 20);  //부모의 생성자도 호출
+	animal->Roar(); // 동물 짖어(C++은 호출할 멤버변수가 정적(컴파일 시간)으로 결정)
+	delete animal;
 }
