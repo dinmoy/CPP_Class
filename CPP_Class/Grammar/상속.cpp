@@ -28,10 +28,10 @@ public:
 		}*/
 	}
 	virtual ~Animal() { cout << "Animal 소멸자()" << endl; }
-	//가상함수 : Java처럼 동적바인딩
-	virtual void  Roar(void) { cout << "Animal 짖다" << endl; }
-	void  Eat(void) { cout << "Animal 먹다" << endl; }
-	void Sleep(void) { cout << "Animal 자다" << endl; }
+	//가상함수 : Java처럼 동적바인딩 + 추상메서드처럼 함수를 정의하지 않음 -> 상소받은 자식에서 정의
+	virtual void  Roar(void) = 0;
+	virtual void  Eat(void) = 0;
+	virtual void Sleep(void) = 0;
 
 private:
 	int color_;
@@ -52,11 +52,16 @@ public:
 	void Roar(void) override {
 		cout << "깡토깡통" << endl;
 	}
-
+	//순수가상함수(추상메서드)는 자식 클래스에서 무조건 정의해야 함
+	void Eat(void) override {};
+	void Sleep(void) override {};
 private:
 	int ear_length_;
 };
 int main() {
+
+	//추상클래스(순수가상함수가 하나라도 존재하는 클래스)의 객체는 생성할 수 없다.
+	//Animal a = Animal(COLOR_GREEN, 10);
 	//소멸자에 virtual을 안하면 자식소멸자가 호출되지 않아서 메모리 누수현상 발생
 	Animal* animal = new Rabbit(COLOR_RED, 3, 20);  //부모의 생성자도 호출
 	animal->Roar(); // 깡총깡총
