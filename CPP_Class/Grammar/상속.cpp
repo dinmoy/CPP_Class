@@ -45,6 +45,13 @@ public:
 		cout << "Rabbit 생성자()" << endl;
 	}
 	~Rabbit() { cout << "Rabbit 소멸자()" << endl; }
+	//함수 override
+	//다형ㅅ성(polymorphism): : 시그니쳐(반환형,이름,매개변수가 모두 같은)가 같은 함수임에도 
+	//불구하고 다르게 실행되는 것
+	//override: 부모 함수 시그니쳐가 존재하지 않으면 에러발생(실수방지)
+	void Roar(void) override {
+		cout << "깡토깡통" << endl;
+	}
 
 private:
 	int ear_length_;
