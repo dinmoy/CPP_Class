@@ -157,6 +157,9 @@ int main(void)
 
 	srand(time(NULL));
 
+	sf::Clock clock;
+	sf::Time elapsedTime;
+
 	Font font;
 	// bool ss = font.loadFromFile("C:\\Windows\\Fonts\\arial.ttf");
 	if (!font.loadFromFile("C:\\Windows\\Fonts\\arial.ttf"))
@@ -192,8 +195,10 @@ int main(void)
 			if (e.type == Event::Closed) // x표를 누른다면
 				window.close();
 		}
+		elapsedTime = clock.getElapsedTime();
+		int second=elapsedTime.asSeconds();
 
-		sprintf(info_text, "score : %d \n", snake.GetScore());
+		sprintf(info_text, "score : %d time : %d \n", snake.GetScore(),seconds);
 		info.setString(info_text);
 
 		// input
