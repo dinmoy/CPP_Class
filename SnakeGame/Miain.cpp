@@ -102,20 +102,22 @@ public:
 		// 경계범위(바운더리)를 넘어섰을 때, 화면 밖으로 넘어갔을 때
 		if (this->body_[0].x_ < 0) {
 			this->body_[0].x_ = 0;
-			is_gameover = true;
 		}
 		else if (this->body_[0].x_ >= W) {
 			this->body_[0].x_ = W - 1;
-			is_gameover = true;
 		}
 		else if (this->body_[0].y_ < 0) {
 			this->body_[0].y_ = 0;
-			is_gameover = true;
 		}
 		else if (this->body_[0].y_ >= H) {
 			this->body_[0].y_ = H - 1;
-			is_gameover = true;
+			
 		}
+		//바운더리를 넘지 않은 경우(정상적인 경우)
+		else {
+			return;
+		}
+		is_gameover = true;
 	}
 
 	void UpdatePosition(void) {
@@ -190,7 +192,7 @@ int main(void)
 	Text text_gameover;
 	text_gameover.setFont(font);
 	text_gameover.setCharacterSize(333);
-	text_gameover.setFillColor(Color::Red);
+	text_gameover.setFillColor(Color::Yellow);
 	text_gameover.setPosition(0, 0);
 	text_gameover.setString("GAME\nOVER");
 
