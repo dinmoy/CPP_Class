@@ -19,6 +19,7 @@ const int HEIGHT = 800;
 int block = 40; // 한 칸을 40으로
 const int W = WIDTH / block;
 const int H = HEIGHT / block;
+bool is_gameover = false;
 
 class Object {
 public:
@@ -99,17 +100,27 @@ public:
 	void UpdateBoundary(void)
 	{
 		// 경계범위(바운더리)를 넘어섰을 때, 화면 밖으로 넘어갔을 때
-		if (this->body_[0].x_ < 0)
+		if (this->body_[0].x_ < 0) {
 			this->body_[0].x_ = 0;
-		if (this->body_[0].x_ >= W)
+			is_gameover = true;
+		}
+		else if (this->body_[0].x_ >= W) {
 			this->body_[0].x_ = W - 1;
-		if (this->body_[0].y_ < 0)
+			is_gameover = true;
+		}
+		else if (this->body_[0].y_ < 0) {
 			this->body_[0].y_ = 0;
-		if (this->body_[0].y_ >= H)
+			is_gameover = true;
+		}
+		else if (this->body_[0].y_ >= H) {
 			this->body_[0].y_ = H - 1;
+			is_gameover = true;
+		}
+	}
 
+	void UpdatePosition(void) {
 		for (int i = 0; i < length_; i++) {
-			this->body_[i].sprite_.setPosition(this->body_[i].x_ * block, this->body_[i].y_ * block);
+			body_[i].sprite_.setPosition(body_[i].x_ * block, body_[i].y_ * block);
 		}
 	}
 
@@ -168,12 +179,20 @@ int main(void)
 		return -1;
 	}
 
-	Text info;
-	info.setFont(font);
-	info.setCharacterSize(60);
-	info.setFillColor(Color::Magenta);
+	Text text_info;
+	text_info.setFont(font);
+	text_info.setCharacterSize(60);
+	text_info.setFillColor(Color::Magenta);
+	text_info.setPosition(0, 0);
 
-	char info_text[100];
+	char text_buf_info[100];
+
+	Text text_gameover;
+	text_gameover.setFont(font);
+	text_gameover.setCharacterSize(333);
+	text_gameover.setFillColor(Color::Red);
+	text_gameover.setPosition(0, 0);
+	text_gameover.setString("GAME\nOVER");
 
 
 	Snake snake = Snake(DIR_DOWN, 1, 5.f, block);
@@ -198,8 +217,8 @@ int main(void)
 		elapsedTime = clock.getElapsedTime();
 		int second=elapsedTime.asSeconds();
 
-		sprintf(info_text, "score : %d time : %d \n", snake.GetScore(),seconds);
-		info.setString(info_text);
+		sprintf(text_buf_info, "score : %d time : %d \n", snake.GetScore(),seconds);
+		text_info.setString(text_buf_info);
 
 		// input
 		// else if로 하면 키를 동시에 적용할 수 없음
@@ -238,6 +257,7 @@ int main(void)
 		snake.UpdateBody();
 		snake.UpdateHead();
 		snake.UpdateBoundary();
+		snake.UpdatePosition();
 
 		// render
 		window.clear();
@@ -245,7 +265,10 @@ int main(void)
 		snake.Render(&window);
 
 		window.draw(apple.sprite_); // 뱀과 사과가 겹칠경우 사과가 위에 나옴 (draw한 순서 때문)
-		window.draw(info);
+		window.draw(text_info);
+
+		if (is_gameover)
+			window.draw(text_gameover);
 
 		window.display();
 	}
