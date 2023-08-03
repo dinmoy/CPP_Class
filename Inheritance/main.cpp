@@ -97,8 +97,9 @@ int main(void)
 		Event e;
 		while (window.pollEvent(e))
 		{
-			if (e.type == Event::Closed)
+			if (e.type == Event::Closed) {
 				window.close();
+			}
 		}
 		// Input
 		// 방향키 이동
@@ -143,5 +144,12 @@ int main(void)
 
 		window.display();
 	}
+
+	delete player;
+	delete enemy1;
+	delete enemy2;
+	delete enemy3;
+
+
 	return 0;
 }
