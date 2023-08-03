@@ -65,7 +65,7 @@ int main(void)
 	se3.setSize(Vector2f(20, 20));
 	se3.setFillColor(Color::Color(42,188,100));
 
-	Entity* player = new Entity(3, 5, &sp1);
+	Entity* player = new Entity(3, 5, &sp1);  
 	Entity* enemy1 = new Entity(1, 3, &se1);
 	Entity* enemy2 = new Entity(1, 2, &se2);
 	Entity* enemy3 = new Entity(1, 4, &se3);
