@@ -23,6 +23,7 @@ public:
 	}
 };
 void main() {
-	Character<int> ch("강아지", 100, 20, 10);
-	ch.print();
+	Character<int>* ch=new Character<int>("강아지", 100, 20, 10);
+	ch->print();
+	delete ch;
 }
