@@ -1,29 +1,46 @@
-﻿#include <iostream>
-#include <string.h>
+﻿#include <stdio.h>
 
-using namespace std;
-template <typename T>
+void QuickSort(int a[], int left, int right) {
+	int i = left, j = right, pivot, temp;
 
-class Character {
-public:
-	string  name_;
-	T health_;
-	T attack_;
-	T defence_;
+	if (left < right) {
+		//범위의 왼쪽 값과 가운데 값을 교환
+		temp = a[left];
+		a[left] = a[(left + right) / 2];
+		a[(left + right) / 2] = temp;
 
-	Character(string name, T health, T attack, T defence)
-		:name_(name), health_(health), attack_(attack), defence_(defence)
-	{
+		pivot = a[left];
+
+		do {
+			while (i < right && a[i] >= pivot) i++;
+			while (j > left && a[j] <= pivot) j--;
+			if (i >= j) break;
+			temp = a[i]; a[i] = a[j]; a[j] = temp;
+		} while (1);
+
+		a[left] = a[j];
+		a[j] = pivot;
+
+		QuickSort(a, left, j - 1);
+		QuickSort(a, j + 1, right);
 	}
-	void print() {
-		cout << "이름: " << name_ << endl;
-		cout << "체력: " << health_ << endl;
-		cout << "공격: " << attack_ << endl;
-		cout << "방어: " << defence_ << endl;
-	}
-};
-void main() {
-	Character<int>* ch=new Character<int>("강아지", 100, 20, 10);
-	ch->print();
-	delete ch;
+}
+
+int main(void) {
+	int a[] = { 31,25,87,6,11,54,20,62,58,41,17,30,5,29 };
+	int i, n;
+
+	n = sizeof(a) / sizeof(int);
+
+	printf("정렬전: ");
+	for (i = 0; i < n; i++) printf("%4d", a[i]);
+	printf("\n\n");
+
+	QuickSort(a, 0, n - 1);
+
+	printf("\n내림차순 퀵정렬: ");
+	for (i = 0; i < n; i++) printf("%4d", a[i]);
+	printf("\n\n");
+
+	return 0;
 }
