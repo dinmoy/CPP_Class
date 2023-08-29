@@ -2,7 +2,7 @@
 
 class Animal {
 public:
-	void sing(void) {}
+	void sing(void);
 private:
 	int hp_;
 
