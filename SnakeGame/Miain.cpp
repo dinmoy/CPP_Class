@@ -4,14 +4,19 @@
 
 #include<stdio.h>
 
-#define DIR_UP		0
-#define DIR_DOWN	1
-#define DIR_LEFT	2
-#define DIR_RIGHT	3
+
+using namespace sf;
+
 
 #define BODY_MAX	20  // 뱀 몸통의 최대길이
 
-using namespace sf;
+enum Dir {
+	UP,  //0
+	DOWN, //1
+	LEFT, //2
+	RIGHT //3
+	
+};
 
 const int WIDTH = 1000;
 const int HEIGHT = 800;
@@ -83,16 +88,16 @@ public:
 	void UpdateHead(void)
 	{
 		// 머리에 대한 이동
-		if (dir_ == DIR_UP) {
+		if (dir_ == Dir::UP) {
 			this->body_[0].y_--;
 		}
-		else if (dir_ == DIR_DOWN) {
+		else if (dir_ == Dir::DOWN) {
 			this->body_[0].y_++;
 		}
-		else if (dir_ == DIR_RIGHT) {
+		else if (dir_ == Dir::RIGHT) {
 			this->body_[0].x_++;
 		}
-		else if (dir_ == DIR_LEFT) {
+		else if (dir_ == Dir::LEFT) {
 			this->body_[0].x_--;
 		}
 	}
@@ -158,7 +163,7 @@ private:
 
 int main(void)
 {
-	printf("%d \n", DIR_RIGHT);
+	printf("%d \n", Dir::RIGHT);
 
 
 	RenderWindow window(VideoMode(WIDTH, HEIGHT), "Snake Game");
@@ -200,7 +205,7 @@ int main(void)
 	text_gameover.setString("GAME\nOVER");
 
 
-	Snake snake = Snake(DIR_DOWN, 1, 5.f, block);
+	Snake snake = Snake(Dir::DOWN, 1, 5.f, block);
 	snake.InitBody();
 
 	Apple apple;
@@ -230,19 +235,19 @@ int main(void)
 		// 네 개의 방향키가 중복으로 input되면 안 됨
 		if (Keyboard::isKeyPressed(Keyboard::Up))
 		{
-			snake.SetDir(DIR_UP);
+			snake.SetDir(Dir::UP);
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Down))
 		{
-			snake.SetDir(DIR_DOWN);
+			snake.SetDir(Dir::DOWN);
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Right))
 		{
-			snake.SetDir(DIR_RIGHT);
+			snake.SetDir(Dir::RIGHT);
 		}
 		else if (Keyboard::isKeyPressed(Keyboard::Left))
 		{
-			snake.SetDir(DIR_LEFT);
+			snake.SetDir(Dir::LEFT);
 		}
 
 		// update
