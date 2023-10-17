@@ -3,8 +3,8 @@
 using namespace std;
 
 int main() {
-	int arr[4] = { 2,4,6,8 };
-	for (int i = 0; i < 4; i++) 
-		cout << arr[i] << " ";
+	double arr[4] = { 1.1,2.2,3.3,4.4 };
+	for (double x : arr)
+		cout << x << endl;
 	return 0;
 }
